@@ -1,4 +1,8 @@
-/******************************************************
+﻿
+
+
+
+/****************************************************
 *	Filename	:SNR_Collection.v
 *	Author		:zpstr
 *	Version		:V1.0
@@ -6,8 +10,7 @@
 *	Copyright (c) 2015 zpstr All rights reserved.
 *History:
 	v1.0:  2016-09-04
-******************************************************/
-
+****************************************************/
 
 `timescale 1 ns/ 1 ps
 module SNR_Collection(
@@ -36,9 +39,9 @@ module SNR_Collection(
 	output led1,
 
 	
-	//test point
-	output fpga_gpio1,fpga_gpio2,fpga_gpio4,
-	output   fpga_gpio3
+	//test point 
+	input fpga_gpio1,fpga_gpio2,
+	output   fpga_gpio3,fpga_gpio4
 );
 assign ea23 =1'b1;
 // clk module
@@ -46,16 +49,16 @@ assign ad1_sclk = adc_clk;
 assign ad2_sclk = adc_clk;
 assign ad1_sload = ad2_sload;
 assign ad1_sdata = ad2_sdata;
-assign fpga_gpio1 = cis_clk;
-assign fpga_gpio3 = adc_clk;
+assign fpga_gpio3 = cis_clk;
+assign fpga_gpio4 = adc_clk;
 
 // ad control
 
 
-wire w_start_init;   //���ʼ����
-wire w_start_cis;   // ��ʼ���ݲ���  0: ������  1: ����
-wire w_cis_wren;  // ��������0�� ����������Ч��ʼ
-wire[15:0] w_sp_para;   //cis  �����ʲ���
+wire w_start_init;   // 1: init ad para 0: nothing
+wire w_start_cis;   //1:start sample  0: nothing
+wire w_cis_wren;  //1: ad value valit  0: avalit
+wire[15:0] w_sp_para;   //cis sample para
 wire  [8:0]w_cmd_config1;
 wire  [8:0]w_cmd_mux1;
 wire  [8:0]w_cmd_gaina1;
@@ -74,8 +77,8 @@ wire  [8:0]w_cmd_offsetb2;
 clk clk_inst(
 	.reset_n  	(dsp_reset),
 	.clk_in 	(emif_clk),    //100mhz
-	.clk_25M    (adc_clk),    // 20mhz
-	.clk_10M	(cis_clk)    //  10mhz
+	.clk_ad    (adc_clk),    // 20mhz
+	.clk_cis	(cis_clk)    //  10mhz
 );
 
 
@@ -84,7 +87,7 @@ adc_ctrl adc_ctrl_inst(
 	.reset_n	(dsp_reset),
 	.adc_clk	(adc_clk),
 	.cis_clk	(cis_clk),
-	.start_init (w_start_init),
+	.start_init (fpga_gpio1),   // w_start_init  test
 	.cmd_config1	(w_cmd_config1),  
 	.cmd_mux1	(w_cmd_mux1),  
 	.cmd_gaina1 	(w_cmd_gaina1),  
@@ -103,8 +106,17 @@ adc_ctrl adc_ctrl_inst(
 	.ad_sdata		(ad2_sdata),
 	.adc_cds		(adc_cds),
 	.cis_sp			(cis_sp),
-	.cis_wren		(w_cis_wren)    // 1: ��Ч����   0����Ч����
+	.cis_wren		(w_cis_wren)   //1: ad value valit  0: avalit
 );
+
+// debug mod led
+wire[7:0] w_led_para;
+assign  w_led_para = 8'd0;
+led_ctrl led_ctrl_inst(
+	.reset_n	(dsp_reset),
+	.clk	(emif_clk),
+	.led_para (w_led_para)
+)
 
 
 

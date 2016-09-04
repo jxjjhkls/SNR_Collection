@@ -1,4 +1,4 @@
-/******************************************************
+﻿/******************************************************
 *	Filename	:adc_ctrl.v
 *	Author		:zpstr
 *	Version		:V1.0
@@ -29,20 +29,20 @@ module adc_ctrl(
 	input  [8:0]cmd_offsetb2,
 	//control
 	input start_cis,    //open cis sample
-	input [15:0] sp_para, //  cis �����ʲ��� 
+	input [15:0] sp_para,//cis sample para
 	output reg ad_sload,
 	output reg ad_sdata,
 	output reg adc_cds,
 	output reg cis_sp,
-	output reg cis_wren    //���� ���ݱ�־λ
+	output reg cis_wren    //1: ad value valit  0: avalit
 );
 
 
-reg r_init_done = 1'b0;   //��ʼ�����ɱ�־ �ڳ�ʼ���� ��1
-reg[3:0] r_wradr = 4'd0;  //��д��ַ
-reg[5:0] r_wrbitcnt = 4'd0;   //��дBIT λ
+reg r_init_done = 1'b0;   // 0: no init  1: init done
+reg[3:0] r_wradr = 4'd0;  // write adr
+reg[5:0] r_wrbitcnt = 6'd0;   // 
 reg[8:0] r_wr_data = 9'd0;
-// ��ʼ�� AD ����
+// init ad para 
 always @(negedge adc_clk)   
 begin
 	if(!reset_n)
@@ -85,48 +85,52 @@ begin
 		begin
 			ad_sload <= 1'b1;
 		end			
-	else if(r_init_done)   //�Ѿ���ʼ����
+	else if(r_init_done)   // done
 		begin
 			ad_sload <= 1'b1;
 		end	
-	else   //��ʼ������
+	else   //not done
 		begin
 			if(r_wradr > 4'd11)
 				begin
-					r_init_done <= 1'b1;	   //��ʼ������
+					r_init_done <= 1'b1;	   //done
 				end
 			else
 				begin
-					if(r_wrbitcnt < 1) //д��д����λ
+					if(r_wrbitcnt < 1) // write or read flag
 						begin
-							ad_sload <= 1'b0;  //��ʼ��������
+							ad_sload <= 1'b0;  // low avalit
 							ad_sdata = 1'b1;
-							r_wrbitcnt <= r_wrbitcnt+1'b1; //��һλ����
+							r_wrbitcnt <= r_wrbitcnt+1'b1; // next bit
 						end
-					else if(r_wrbitcnt < 5) //���͵�ַ
+					else if(r_wrbitcnt < 5) // write adr
 						begin
 							ad_sdata = r_wradr[4-r_wrbitcnt];
-							r_wrbitcnt <= r_wrbitcnt+1'b1; //��һλ����
+							r_wrbitcnt <= r_wrbitcnt+1'b1; // next bit
 						end
 					else if(r_wrbitcnt < 7)  //dummy
 						begin
 							ad_sdata  <= 0;
-							r_wrbitcnt <= r_wrbitcnt+1'b1; //��һλ����
+							r_wrbitcnt <= r_wrbitcnt+1'b1; // next bit
 						end
 					else if(r_wrbitcnt < 16)  //9 bit data
 						begin
 							ad_sdata  <= r_wr_data[15 - r_wrbitcnt];
-							r_wrbitcnt <= r_wrbitcnt+1'b1; //��һλ����
+							r_wrbitcnt <= r_wrbitcnt+1'b1; // next bit
+						end
+					else if(r_wrbitcnt < 17)  //write wradr;
+						begin 
+							r_wrbitcnt <= r_wrbitcnt+1'b1; // next bit
+							r_wradr = r_wradr + 1'b1;  // next adr
 						end
 					else if(r_wrbitcnt < 20)  //dummy
 						begin
-							ad_sload <= 1'b1;  //������������
+							ad_sload <= 1'b1;  // next bit
 							r_wrbitcnt <= r_wrbitcnt+1'b1; //��һλ����
 						end
 					else 
 						begin
 							r_wrbitcnt <= 0;
-							r_wradr = r_wradr + 1'b1;  //д��һ����ַ
 						end
 				end
 		end			
