@@ -1,0 +1,39 @@
+/**************************************
+// Target Device	: Cyclone4 EP4CE6E22C8 EP4CE10E22C8
+// Tool versions	: Quartus II 13.0
+// Description		: SNR_Collection
+// Revision			: V1.0
+***************************************/
+`timescale 1 ns/ 1 ps
+module SNR_Collection(
+	input dsp_100mclk,dsp_reset,
+	output dsp_int,
+	// emif buf
+	input emif_a21,emif_a22,
+	output[31:0] emif_data,
+	
+	
+	//ad control
+	output cis_sp,cis_clk,   //7.5mhz
+	
+	output adc_cds,adc_clk,  //15mhz
+	
+	output ad1_sclk,ad1_sdata,ad1_sload,
+	input[7:0] ad1_data,
+	
+	output ad2_sclk,ad2_sdata,ad2_sload,
+	input[7:0] ad2_data,
+
+	
+	output ctrl_led,
+	output ea23,
+	output led1,
+
+	
+	//test point
+	output fpga_gpio2,fpga_gpio3,fpga_gpio4
+);
+
+assign {emif_data[8],emif_data[7:0]}=ad1_data+ad2_data;   //加法器
+
+endmodule

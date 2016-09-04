@@ -1,0 +1,154 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.0 Build 156 04/24/2013 SJ Full Version
+# Date created = 09:56:45  September 03, 2016
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		SNR_Collection_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE6E22C8
+set_global_assignment -name TOP_LEVEL_ENTITY SNR_Collection
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:56:45  SEPTEMBER 03, 2016"
+set_global_assignment -name LAST_QUARTUS_VERSION 13.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim (Verilog)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST ON -section_id eda_simulation
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE "E:/zpstr/Device/SNR_Collection/simulation/SNR_Collection.vwf"
+set_global_assignment -name EDA_TIME_SCALE "1 ns" -section_id eda_simulation
+set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY OFF -section_id eda_simulation
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_76 -to ad1_data[0]
+set_location_assignment PIN_77 -to ad1_data[1]
+set_location_assignment PIN_80 -to ad1_data[2]
+set_location_assignment PIN_83 -to ad1_data[3]
+set_location_assignment PIN_84 -to ad1_data[4]
+set_location_assignment PIN_85 -to ad1_data[5]
+set_location_assignment PIN_86 -to ad1_data[6]
+set_location_assignment PIN_87 -to ad1_data[7]
+set_location_assignment PIN_113 -to ad1_sclk
+set_location_assignment PIN_66 -to ad1_sdata
+set_location_assignment PIN_67 -to ad1_sload
+set_location_assignment PIN_98 -to ad2_data[0]
+set_location_assignment PIN_99 -to ad2_data[1]
+set_location_assignment PIN_100 -to ad2_data[2]
+set_location_assignment PIN_101 -to ad2_data[3]
+set_location_assignment PIN_103 -to ad2_data[4]
+set_location_assignment PIN_104 -to ad2_data[5]
+set_location_assignment PIN_105 -to ad2_data[6]
+set_location_assignment PIN_106 -to ad2_data[7]
+set_location_assignment PIN_111 -to ad2_sclk
+set_location_assignment PIN_127 -to ad2_sdata
+set_location_assignment PIN_128 -to ad2_sload
+set_location_assignment PIN_65 -to adc_cds
+set_location_assignment PIN_68 -to adc_clk
+set_location_assignment PIN_71 -to cis_clk
+set_location_assignment PIN_70 -to cis_sp
+set_location_assignment PIN_72 -to ctrl_led
+set_location_assignment PIN_2 -to dsp_int
+set_location_assignment PIN_1 -to dsp_reset
+set_location_assignment PIN_73 -to ea23
+set_location_assignment PIN_10 -to emif_a21
+set_location_assignment PIN_11 -to emif_a22
+set_location_assignment PIN_32 -to emif_data[31]
+set_location_assignment PIN_31 -to emif_data[30]
+set_location_assignment PIN_30 -to emif_data[29]
+set_location_assignment PIN_28 -to emif_data[28]
+set_location_assignment PIN_141 -to emif_data[27]
+set_location_assignment PIN_142 -to emif_data[26]
+set_location_assignment PIN_143 -to emif_data[25]
+set_location_assignment PIN_144 -to emif_data[24]
+set_location_assignment PIN_51 -to emif_data[23]
+set_location_assignment PIN_52 -to emif_data[22]
+set_location_assignment PIN_53 -to emif_data[21]
+set_location_assignment PIN_54 -to emif_data[20]
+set_location_assignment PIN_55 -to emif_data[19]
+set_location_assignment PIN_58 -to emif_data[18]
+set_location_assignment PIN_59 -to emif_data[17]
+set_location_assignment PIN_60 -to emif_data[16]
+set_location_assignment PIN_50 -to emif_data[15]
+set_location_assignment PIN_49 -to emif_data[14]
+set_location_assignment PIN_46 -to emif_data[13]
+set_location_assignment PIN_42 -to emif_data[12]
+set_location_assignment PIN_39 -to emif_data[11]
+set_location_assignment PIN_38 -to emif_data[10]
+set_location_assignment PIN_34 -to emif_data[9]
+set_location_assignment PIN_33 -to emif_data[8]
+set_location_assignment PIN_126 -to emif_data[7]
+set_location_assignment PIN_129 -to emif_data[6]
+set_location_assignment PIN_132 -to emif_data[5]
+set_location_assignment PIN_133 -to emif_data[4]
+set_location_assignment PIN_135 -to emif_data[3]
+set_location_assignment PIN_136 -to emif_data[2]
+set_location_assignment PIN_137 -to emif_data[1]
+set_location_assignment PIN_138 -to emif_data[0]
+set_location_assignment PIN_43 -to fpga_gpio2
+set_location_assignment PIN_44 -to fpga_gpio3
+set_location_assignment PIN_64 -to fpga_gpio4
+set_location_assignment PIN_110 -to led1
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH SNR_Collection -section_id eda_simulation
+set_global_assignment -name EDA_LAUNCH_CMD_LINE_TOOL OFF -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_PORTABLE_FILE_PATHS OFF -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_GENERATE_SCRIPT_ONLY OFF -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME SNR_Collection -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id SNR_Collection
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME SNR_Collection_vlg_tst -section_id SNR_Collection
+set_global_assignment -name EDA_TEST_BENCH_FILE simulation/modelsim/SNR_Collection.vt -section_id SNR_Collection
+set_global_assignment -name EDA_MAP_ILLEGAL_CHARACTERS ON -section_id eda_simulation
+set_global_assignment -name EDA_ENABLE_GLITCH_FILTERING ON -section_id eda_simulation
+set_global_assignment -name EDA_USER_COMPILED_SIMULATION_LIBRARY_DIRECTORY "E:\\zpstr\\Device\\SNR_Collection\\simulation\\modelsim" -section_id eda_simulation
+set_location_assignment PIN_7 -to fpga_gpio1
+set_location_assignment PIN_89 -to emif_clk
+set_location_assignment PIN_75 -to emif_oe
+set_location_assignment PIN_74 -to emif_re
+set_location_assignment PIN_90 -to emif_we
+set_global_assignment -name VERILOG_FILE SNR_Collection.v
+set_global_assignment -name VERILOG_FILE clk.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

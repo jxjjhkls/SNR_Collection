@@ -1,0 +1,52 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\zpstr\Device\SNR_Collection\simulation\modelsim
+T_opt
+V8Ph>NQTf>:3ln^V8OFQR71
+04 22 4 work SNR_Collection_vlg_tst fast 0
+=1-844bf5a4271b-57ca87a1-1e4-3790
+o-quiet -auto_acc_if_foreign -work work -L altera_ver -L cycloneive_ver -L gate_work -L work +acc
+n@_opt
+OE;O;10.1a;51
+vSNR_Collection
+IOfzAohfYPeC=3R6aI130o1
+Ve4d1>:A:Y?7L1]X?Afa5J0
+Z1 dE:\zpstr\Device\SNR_Collection\simulation\modelsim
+w1472890766
+8SNR_Collection.vo
+FSNR_Collection.vo
+L0 31
+Z2 OE;L;10.1a;51
+r1
+31
+Z3 o-vlog01compat -work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@s@n@r_@collection
+!i10b 1
+!s100 ;a82@LdIF3OFc]o]RNEWW0
+!s85 0
+!s108 1472890784.392000
+!s107 SNR_Collection.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|SNR_Collection.vo|
+!s92 -vlog01compat -work work +incdir+. -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+vSNR_Collection_vlg_tst
+IHen[9fKaggnA=R_EK9zD_3
+VB0;VoCMdiZT6gkocj2RaB0
+R1
+w1472889339
+8E:/zpstr/Device/SNR_Collection/simulation/modelsim/SNR_Collection.vt
+FE:/zpstr/Device/SNR_Collection/simulation/modelsim/SNR_Collection.vt
+L0 28
+R2
+r1
+31
+R3
+n@s@n@r_@collection_vlg_tst
+!i10b 1
+!s100 8ln7TS=l82G`3]5j0<4Fe3
+!s85 0
+!s108 1472890784.782000
+!s107 E:/zpstr/Device/SNR_Collection/simulation/modelsim/SNR_Collection.vt|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+E:/zpstr/Device/SNR_Collection/simulation/modelsim|E:/zpstr/Device/SNR_Collection/simulation/modelsim/SNR_Collection.vt|
+!s92 -vlog01compat -work work +incdir+E:/zpstr/Device/SNR_Collection/simulation/modelsim -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF

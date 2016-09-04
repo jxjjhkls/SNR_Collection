@@ -1,0 +1,146 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench template that is freely editable to  
+// suit user's needs .Comments are provided in each section to help the user    
+// fill out necessary details.                                                  
+// *****************************************************************************
+// Generated on "09/03/2016 16:36:33"
+                                                                                
+// Verilog Test Bench template for design : SNR_Collection
+// 
+// Simulation tool : ModelSim (Verilog)
+// 
+
+`timescale 1 ns/ 1 ps
+module SNR_Collection_vlg_tst();
+// constants                                           
+// general purpose registers
+reg eachvec;
+// test vector input registers
+reg [7:0] ad1_data;
+reg [7:0] ad2_data;
+reg dsp_100mclk;
+reg dsp_reset;
+reg emif_a21;
+reg emif_a22;
+reg [31:0] treg_emif_data;
+reg fpga_gpio4;
+// wires                                               
+wire ad1_sclk;
+wire ad1_sdata;
+wire ad1_sload;
+wire ad2_sclk;
+wire ad2_sdata;
+wire ad2_sload;
+wire adc_cds;
+wire adc_clk;
+wire cis_clk;
+wire cis_sp;
+wire ctrl_led;
+wire dsp_int;
+wire ea23;
+wire [31:0]  emif_data;
+wire fpga_gpio2;
+wire fpga_gpio3;
+wire led1;
+
+// assign statements (if any)                          
+assign emif_data = treg_emif_data;
+SNR_Collection i1 (
+// port map - connection between master ports and signals/registers   
+	.ad1_data(ad1_data),
+	.ad1_sclk(ad1_sclk),
+	.ad1_sdata(ad1_sdata),
+	.ad1_sload(ad1_sload),
+	.ad2_data(ad2_data),
+	.ad2_sclk(ad2_sclk),
+	.ad2_sdata(ad2_sdata),
+	.ad2_sload(ad2_sload),
+	.adc_cds(adc_cds),
+	.adc_clk(adc_clk),
+	.cis_clk(cis_clk),
+	.cis_sp(cis_sp),
+	.ctrl_led(ctrl_led),
+	.dsp_100mclk(dsp_100mclk),
+	.dsp_int(dsp_int),
+	.dsp_reset(dsp_reset),
+	.ea23(ea23),
+	.emif_a21(emif_a21),
+	.emif_a22(emif_a22),
+	.emif_data(emif_data),
+	.fpga_gpio2(fpga_gpio2),
+	.fpga_gpio3(fpga_gpio3),
+	.fpga_gpio4(fpga_gpio4),
+	.led1(led1)
+);
+initial                                                
+begin                                                  
+// code that executes only once                        
+// insert code here --> begin                          
+    ad1_data <= 8'b0;
+   ad2_data <= 8'b0; 
+   fpga_gpio4  <= 1'b0;     
+#1
+   ad1_data <= 8'b1;
+   ad2_data <= 8'b1; 
+ fpga_gpio4 <= 1'b1;           
+#1
+   ad1_data <= 8'b0;
+   ad2_data <= 8'b0;  
+   fpga_gpio4  <= 1'b0;  
+#1
+   ad1_data <= 8'b1;
+   ad2_data <= 8'b1;   
+   fpga_gpio4 <= 1'b1;  
+#1
+   ad1_data <= 8'b0;
+   ad2_data <= 8'b0;  
+   fpga_gpio4  <= 1'b0; 
+#1
+   ad1_data <= 8'b1;
+   ad2_data <= 8'b1;   
+   fpga_gpio4 <=1'b1;   
+#1
+   ad1_data <= 8'b0;
+   ad2_data <= 8'b0;  
+   fpga_gpio4  <= 1'b0;  
+#1
+   ad1_data <= 8'b1;
+   ad2_data <= 8'b1;   
+   fpga_gpio4  <= 1'b1;   
+#1
+   ad1_data <= 8'b0;
+   ad2_data <= 8'b0; 
+   fpga_gpio4 <= 1'b0;   
+#1
+   ad1_data <= 8'b1;
+   ad2_data <= 8'b1;            
+   fpga_gpio4 <=1'b1;                                                            
+// --> end                                             
+$display("Running testbench");                       
+end                                                    
+always                                                 
+// optional sensitivity list                           
+// @(event1 or event2 or .... eventn)                  
+begin                                                  
+// code executes for every event on sensitivity list   
+// insert code here --> begin                          
+                                                       
+@eachvec;                                              
+// --> end                                             
+end                                                    
+endmodule
+

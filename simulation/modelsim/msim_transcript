@@ -1,0 +1,67 @@
+# Reading C:/modeltech_10.1a/tcl/vsim/pref.tcl 
+# //  ModelSim SE 10.1a Feb 22 2012 
+# //
+# //  Copyright 1991-2012 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+# do SNR_Collection_run_msim_rtl_verilog.do 
+# vmap altera_ver E:/zpstr/Device/SNR_Collection/simulation/modelsim/verilog_libs/altera_ver
+# Copying C:\modeltech_10.1a\win32/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\modeltech_10.1a\win32/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# vmap lpm_ver E:/zpstr/Device/SNR_Collection/simulation/modelsim/verilog_libs/lpm_ver
+# Modifying modelsim.ini
+# vmap sgate_ver E:/zpstr/Device/SNR_Collection/simulation/modelsim/verilog_libs/sgate_ver
+# Modifying modelsim.ini
+# vmap altera_mf_ver E:/zpstr/Device/SNR_Collection/simulation/modelsim/verilog_libs/altera_mf_ver
+# Modifying modelsim.ini
+# vmap altera_lnsim_ver E:/zpstr/Device/SNR_Collection/simulation/modelsim/verilog_libs/altera_lnsim_ver
+# Modifying modelsim.ini
+# vmap cycloneive_ver E:/zpstr/Device/SNR_Collection/simulation/modelsim/verilog_libs/cycloneive_ver
+# Modifying modelsim.ini
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+E:/zpstr/Device/SNR_Collection {E:/zpstr/Device/SNR_Collection/SNR_Collection.v}
+# Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+# -- Compiling module SNR_Collection
+# 
+# Top level modules:
+# 	SNR_Collection
+# 
+# vlog -vlog01compat -work work +incdir+E:/zpstr/Device/SNR_Collection/simulation/modelsim {E:/zpstr/Device/SNR_Collection/simulation/modelsim/SNR_Collection.vt}
+# Model Technology ModelSim SE vlog 10.1a Compiler 2012.02 Feb 22 2012
+# -- Compiling module SNR_Collection_vlg_tst
+# 
+# Top level modules:
+# 	SNR_Collection_vlg_tst
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  SNR_Collection_vlg_tst
+# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps SNR_Collection_vlg_tst 
+# ** Note: (vsim-3812) Design is being optimized...
+# 
+# Loading work.SNR_Collection_vlg_tst(fast)
+# Loading work.SNR_Collection(fast)
+# 
+# add wave *
+# 
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Running testbench
+add wave -position insertpoint  \
+sim:/SNR_Collection_vlg_tst/fpga_gpio4
+add wave -position insertpoint  \
+sim:/SNR_Collection_vlg_tst/fpga_gpio2
+run -all

@@ -1,0 +1,59 @@
+/**************************************
+// Target Device	: Cyclone4 EP4CE6E22C8 EP4CE10E22C8
+// Tool versions	: Quartus II 13.0
+// File Name		: clk.v
+// Revision			: V1.0  
+***************************************/
+module clk(
+	input clk_in,rest_n,
+	output clk_20M,clk_10M
+);
+parameter PRE_20M = 5;
+parameter PRE_10M = 10;
+
+
+reg	carry_20M;
+reg[7:0]  divider_20M;
+
+
+reg carry_10M;
+reg[7:0]  divider_10M;
+
+assign clk_20M = carry_20M;
+assign clk_10M = carry_10M;
+
+always @(posedge clk_in or negedge clk_in)
+	begin
+		if(!rest_n)
+			begin    // reg init
+			carry_20M <= 1'b0;
+			divider_20M <= 8'b0;
+			carry_10M <= 1'b0;
+			divider_10M <= 8'b0;
+			end
+		else
+			begin
+				// 20 M proc
+				if(divider_20M == PRE_20M0-1)
+					begin
+						carry_20M <= !carry_20M;
+						divider_20M = 8'b0;
+					end
+				else
+					divider_20M <= divider_20M+1;
+				//10 M proc	
+				if(divider_10M == PRE_10M0-1)
+					begin
+						carry_10M <= !carry_10M;
+						divider_10M = 8'b0;
+					end
+				else
+					divider_10M <= divider_10M+1;				
+			end
+	end
+	
+
+
+
+
+endmodule
