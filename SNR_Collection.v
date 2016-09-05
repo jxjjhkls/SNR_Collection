@@ -1,8 +1,4 @@
-﻿
-
-
-
-/****************************************************
+/******************************************************
 *	Filename	:SNR_Collection.v
 *	Author		:zpstr
 *	Version		:V1.0
@@ -10,8 +6,7 @@
 *	Copyright (c) 2015 zpstr All rights reserved.
 *History:
 	v1.0:  2016-09-04
-****************************************************/
-
+******************************************************/
 `timescale 1 ns/ 1 ps
 module SNR_Collection(
 	input emif_clk,dsp_reset,
@@ -111,12 +106,15 @@ adc_ctrl adc_ctrl_inst(
 
 // debug mod led
 wire[7:0] w_led_para;
+
+//assign w_led_para[0] = fpga_gpio2;
 assign  w_led_para = 8'd0;
 led_ctrl led_ctrl_inst(
 	.reset_n	(dsp_reset),
 	.clk	(emif_clk),
-	.led_para (w_led_para)
-)
+	.led_para (w_led_para),
+	.led	(led1)
+);
 
 
 

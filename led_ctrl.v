@@ -10,19 +10,45 @@
 module led_ctrl(
 	input reset_n,
 	input clk,
-	input[7:0] led_para  //LED cotrol para
-)
+	input[7:0] led_para,  //LED cotrol para
+	output led
+);
+
+parameter  PRE_CNT1 = 8'd250;
+parameter  PRE_CNT2 = 8'd125;
+parameter  PRE_CNT4 = 8'd64;
+parameter  PRE_CNT8 = 8'd32;
+parameter  PRE_CNT16 = 8'd16;
+
+reg[7:0] r_ledcnt = 8'd0;
+
+reg[7:0] r_ledprepara = 8'd0;
+
+reg[7:0] r_cnt = 8'd0;
+
+reg[7:0] r_flashcnt = 8'd0;
+
+
+
+
+
+reg r_ledout = 1'b1;
+
+
+assign  led = r_ledout;
+
+
 
 reg[7:0] r_div1;
 reg		r_carry1;
 reg[7:0] r_div2;
 reg		r_carry2;
-reg[7:0] r_div3;
-reg		r_carry3;
-reg[7:0] r_div4;
-reg		r_carry4;
 
-always @(posedge clk)
+
+
+
+
+always @(posedge clk)   //100mhz
 begin
 	if(!reset_n)
 		begin
@@ -31,17 +57,17 @@ begin
 		end
 	else
 		begin
-			if(r_div1 < 8'd100)
+			if(r_div1 < 8'd200)
 				r_div1 <= r_div1+ 1'b1;
 			else
 				begin
-					r_carry1 <= !r_carry1;   //   r_div1 50M/100 500K
+					r_carry1 <= !r_carry1;   //   r_div1  100m/400 = 250k
 					r_div1 <= 0;
 				end
 		end		
 end
 
-always @(posedge r_carry1)
+always @(posedge r_carry1 or negedge reset_n)
 begin
 	if(!reset_n)
 		begin
@@ -50,37 +76,72 @@ begin
 		end
 	else
 		begin
-			if(r_div2 < 8'd100)
+			if(r_div2 < 8'd250)
 				r_div2 <= r_div2+ 1'b1;
 			else
 				begin
-					r_carry2 <= !r_carry2;   //   r_div2 500K/100  5K
+					r_carry2 <= !r_carry2;   //   r_div2 250k/500  500hz
 					r_div2 <= 0;
 				end
 		end		
 end
 
-always @(posedge r_carry2)
+
+// set cnt value
+
+
+always @(posedge r_carry2 or negedge reset_n)   // 500hz   500hz /500 hz
 begin
 	if(!reset_n)
 		begin
-			r_div3 <= 8'd0;
-			r_carry3 <= 1'b0;
+			if(led_para[3])
+					r_ledcnt =  PRE_CNT16;
+				else if(led_para[2])
+					r_ledcnt =  PRE_CNT8;
+				else if(led_para[1])
+					r_ledcnt =  PRE_CNT4;
+				else if(led_para[0])
+					r_ledcnt =  PRE_CNT2;
+				else  // other value
+					r_ledcnt = 	PRE_CNT16;	
+				r_ledprepara <= led_para;
+				r_flashcnt <= 8'd10;   // flash 10 time
 		end
 	else
 		begin
-			if(r_div3 < 8'd100)
-				r_div3 <= r_div3+ 1'b1;
-			else
+			if(r_ledprepara != led_para)
 				begin
-					r_carry3 <= !r_carry3;   //   r_div3  5K/100 = 50HZ
-					r_div3 <= 0;
+					if(led_para[3])
+						r_ledcnt =  PRE_CNT16;
+					else if(led_para[2])
+						r_ledcnt =  PRE_CNT8;
+					else if(led_para[1])
+						r_ledcnt =  PRE_CNT4;
+					else if(led_para[0])
+						r_ledcnt =  PRE_CNT2;
+					else
+						r_ledcnt = 	PRE_CNT16;	
+					r_ledprepara <= led_para;
 				end
-		end		
-end
-
-always @(posedge r_carry3)
-begin
+			if(r_cnt < r_ledcnt)
+				r_cnt <= r_cnt+ 1'b1;
+			else 
+				begin
+					r_cnt <= 8'd0;
+					r_ledout <= !r_ledout;
+					if(r_flashcnt)
+						begin
+						r_flashcnt <= r_flashcnt -1'b1;
+						end
+					else
+						begin
+							r_flashcnt <= 8'd10;
+							if(r_ledcnt !=  PRE_CNT1)
+								r_ledcnt <= PRE_CNT1;
+						end
+				end
+		end
+	
 	
 end
 
